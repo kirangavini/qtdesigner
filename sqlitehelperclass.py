@@ -33,10 +33,15 @@ class SqliteHelper:
                      year INTEGER,
                      admin INTEGER)""")  
         
-    def edit(self,query): # UPDATE
+    def edit(self,query,updates): # UPDATE
+        c = self.cursor
+        c.execute(query,updates)
+        self.conn.commit()
+        
+    def delete(self,query): # delete
         c = self.cursor
         c.execute(query)
-        self.conn.commit()
+        self.conn.commit()        
 
     def insert(self,query,insertdata): #INSERT 
         c = self.cursor
